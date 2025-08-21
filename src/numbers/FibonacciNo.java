@@ -2,47 +2,43 @@ package numbers;
 import java.util.Scanner;
 
 public class FibonacciNo {
-	
-	  // The Fibonacci sequence is a special series of numbers where:
+    
+    // Method to check if a number is prime
+    public static boolean isPrime(int num) {
+        if (num < 2) return false; 
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
 
-      // The first two numbers are 0 and 1.
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
 
-      // Every number after that is the sum of the previous two numbers.
-	
-
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		System.out.print("Enter number of terms: ");
+        System.out.print("Enter number of terms: ");
         int n = sc.nextInt();
-        
-		sc.close();
-		
-		int first = 0 , second = 1;
-		
-		System.out.print("Fibonacci Series: ");
-		
-		// first two number
-		
-		if (n >= 1) {
-			System.out.print(first + " ");
-		}
-		if (n >= 2) {
-			System.out.print(second+ " ");
-		}
-		
-		 // Generate next terms using loop
-		for (int i= 3 ; i <= n; i++) {
-			int next = first + second;
-			System.out.print(next+ " ");
-			
-			// update the values
-			
-			first = second;
-			second = next;
-		}
-		
+        sc.close();
 
-	}
+        int first = 0, second = 1;
 
+        System.out.print("Prime Fibonacci Numbers: ");
+
+        for (int i = 1; i <= n; i++) {
+            int next;
+            if (i == 1) {
+                next = first;
+            } else if (i == 2) {
+                next = second;
+            } else {
+                next = first + second;
+                first = second;
+                second = next;
+            }
+
+            // check prime and print
+            if (isPrime(next)) {
+                System.out.print(next + " ");
+            }
+        }
+    }
 }
